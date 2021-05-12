@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Assignment_2
+namespace aaaa
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
@@ -23,6 +23,11 @@ namespace Assignment_2
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			//During step 2 it is necessary to hard code some values for the ListBox
+			sampleListBox.Items.Add("one");
+			sampleListBox.Items.Add("two");
+			sampleListBox.Items.Add("three");
 		}
 	}
 }

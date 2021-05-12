@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace aaaa {
 
-    //enums
-    public enum Campus {
-        Hobart, Launceston, CradleCoast
-    };
+
+namespace aaaa {
 
     public enum EmploymentLevel {
         Student, A, B, C, D, E
@@ -25,47 +22,64 @@ namespace aaaa {
         public string Email { get; set; }
         public string Photo { get; set; }
 
+        public List<Position> Positions;
+
+        public List<Publication> Publications;
+
         public Position GetCurrentJob {
             get {
-                return ...;
+                var toBeReturned = from job in Positions
+                                   where job.end == null
+                                   select job;
+
+                return (Position)toBeReturned;
             }
         }
 
         public string CurrentJobTitle {
             get {
-                return ...;
+                return this.GetCurrentJob.Title();
             }
         }
 
         public DateTime CurrentJobStart {
             get {
-                return ...;
+                return this.GetCurrentJob.start;
             }
         }
 
         public Position GetEarliestJob {
             get {
-                return ...;
+                Position currentEarliest = this.Positions[0];
+
+                var toBeReturned = from job in Positions
+                                   where (DateTime.Compare(job.start, currentEarliest.start) < 1)
+                                   select job;
+
+                return (Position)toBeReturned;
             }
         }
 
         public DateTime EarliestStart {
             get {
-                return ...;
+                return this.GetEarliestJob.start;
             }
         }
 
         public float Tenure {
             get {
-                return ...;
+                return  ( (float)DateTime.Now.Subtract(this.EarliestStart).Days ) / (float)365.0;
             }
         }
 
         public int PublicationsCount {
             get {
-                return ...;
+                return this.Publications.Count;
             }
         }
     }
 
+    public class Student : Researcher {
+        public string Degree { get; set; }
+    }
 }

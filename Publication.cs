@@ -23,7 +23,7 @@ namespace aaaa {
         //age of publication
         public int Age {
             get {
-                return ...;
+                return DateTime.Now.Subtract(this.Available).Days;
             }
         }
     }
